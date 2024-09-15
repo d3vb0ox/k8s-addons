@@ -60,24 +60,24 @@ spec:
                 enabled: true
                 keep: true
               nodeSelector:
-                {{metadata.annorations.critical_addons_node_selector}}
+                {{metadata.annotations.critical_addons_node_selector}}
               tolerations:
-                 {{metadata.annorations.critical_addons_node_tolerations}}
+                 {{metadata.annotations.critical_addons_node_tolerations}}
               cainjector:
                 nodeSelector:
-                  {{metadata.annorations.critical_addons_node_selector}}
+                  {{metadata.annotations.critical_addons_node_selector}}
                 tolerations:
-                   {{metadata.annorations.critical_addons_node_tolerations}}
+                   {{metadata.annotations.critical_addons_node_tolerations}}
               webhook:
                 nodeSelector:
-                  {{metadata.annorations.critical_addons_node_selector}}
+                  {{metadata.annotations.critical_addons_node_selector}}
                 tolerations:
-                   {{metadata.annorations.critical_addons_node_tolerations}}
+                   {{metadata.annotations.critical_addons_node_tolerations}}
               startupapicheck:
                 nodeSelector:
-                  {{metadata.annorations.critical_addons_node_selector}}
+                  {{metadata.annotations.critical_addons_node_selector}}
                 tolerations:
-                   {{metadata.annorations.critical_addons_node_tolerations}}
+                   {{metadata.annotations.critical_addons_node_tolerations}}
               serviceAccount:
                 name: {{metadata.annotations.cert_manager_service_account}}
                 annotations:
