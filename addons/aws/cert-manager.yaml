@@ -14,7 +14,7 @@ spec:
               values:
                 addonChart: cert-manager
                 # anything not staging or prod use this version
-                addonChartVersion: v1.14.3
+                addonChartVersion: {{metadata.annotations.cert_manager_version}}
                 addonChartRepository: https://charts.jetstack.io
               selector:
                 matchExpressions:
