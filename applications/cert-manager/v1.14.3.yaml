@@ -1,2 +1,4 @@
 ## Common values for all resources
 installCRDs: true
+commonLabels:
+  argo_test_version: 1.14.3
