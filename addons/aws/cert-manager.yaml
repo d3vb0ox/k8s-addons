@@ -18,9 +18,6 @@ spec:
                 addonChartRepository: https://charts.jetstack.io
               selector:
                 matchExpressions:
-                  - key: akuity.io/argo-cd-cluster-name
-                    operator: NotIn
-                    values: [in-cluster]
                   - key: enable_cert_manager
                     operator: In
                     values: ['true']
@@ -54,21 +51,32 @@ spec:
             releaseName: '{{values.addonChart}}'
             ignoreMissingValueFiles: true
             valueFiles:
-              - $values/{{metadata.annotations.addons_repo_basepath}}environments/default/addons/{{values.addonChart}}/values.yaml
-              - $values/{{metadata.annotations.addons_repo_basepath}}environments/{{metadata.labels.environment}}/addons/{{values.addonChart}}/values.yaml
-              - $values/{{metadata.annotations.addons_repo_basepath}}clusters/{{name}}/addons/{{values.addonChart}}/values.yaml
+              - $values/{{metadata.annotations.addons_repo_basepath}}applications/cert-manager/common.yaml
+              - $values/{{metadata.annotations.addons_repo_basepath}}applications/cert-manager/{{values.addonChartVersion}}.yaml
             values: |
-              installCRDs: true
+              nodeSelector:
+                {{metadata.annotations.critical_addons_node_selector}}
+              tolerations:
+                 {{metadata.annotations.critical_addons_node_tolerations}}
+              cainjector:
+                nodeSelector:
+                  {{metadata.annotations.critical_addons_node_selector}}
+                tolerations:
+                   {{metadata.annotations.critical_addons_node_tolerations}}
+              webhook:
+                nodeSelector:
+                  {{metadata.annotations.critical_addons_node_selector}}
+                tolerations:
+                   {{metadata.annotations.critical_addons_node_tolerations}}
+              startupapicheck:
+                nodeSelector:
+                  {{metadata.annotations.critical_addons_node_selector}}
+                tolerations:
+                   {{metadata.annotations.critical_addons_node_tolerations}}
               serviceAccount:
                 name: {{metadata.annotations.cert_manager_service_account}}
                 annotations:
                   eks.amazonaws.com/role-arn: {{metadata.annotations.cert_manager_iam_role_arn}}
-          # fileParameters:
-          #  - name:
-          #    path:
-          # parameters
-          # values
-          # valuesObject
       destination:
         namespace: '{{metadata.annotations.cert_manager_namespace}}'
         name: '{{name}}'
