@@ -52,7 +52,7 @@ spec:
             ignoreMissingValueFiles: true
             valueFiles:
               - $values/{{metadata.annotations.addons_repo_basepath}}applications/cert-manager/common.yaml
-              - $values/{{metadata.annotations.addons_repo_basepath}}applications/cert-manager/{{values.addonChartVersion}}.yaml
+#              - $values/{{metadata.annotations.addons_repo_basepath}}applications/cert-manager/{{values.addonChartVersion}}.yaml
             values: |
               crds:
                 enabled: true
