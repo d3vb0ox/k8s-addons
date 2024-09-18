@@ -1,5 +1,6 @@
 crds:
   enabled: true
   keep: true
-commonLabels:
-  argo_test_version: 1.15.3
+global:
+  commonLabels:
+    argo_test_version: 1.15.3
